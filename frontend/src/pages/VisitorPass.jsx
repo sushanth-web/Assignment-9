@@ -41,12 +41,11 @@ export default function PrintVisitor() {
         {/* Visitor Image top-left */}
         {form.profile_image && (
           <img
-            src={form.profile_image.startsWith("/uploads") ? `http://localhost:5000${form.profile_image}` : form.profile_image}
+            src={form.profile_image}
             alt={form.name}
             className="w-20 h-20 rounded-full object-cover absolute top-6 left-6 border-2 border-indigo-600"
           />
         )}
-
         {/* QR Code top-right */}
         <div className="absolute top-6 right-6">
           <QRCodeCanvas 

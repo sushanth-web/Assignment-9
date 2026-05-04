@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import api from "../services/api";
 
-export default function EditVisitor() {
+export default function EditEmployee() {
   const { id } = useParams()
   const [form, setForm] = useState({
     name: "",
@@ -15,7 +15,7 @@ export default function EditVisitor() {
   })
   useEffect(() => {
     api
-      .get(`/get/visitors/details/${id}`, {
+      .get(`/get/employees/details/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -32,7 +32,7 @@ export default function EditVisitor() {
 
     try {
       await api.patch(
-        `/update/visitors/details/${id}`,
+        `/update/employees/details/${id}`,
         form,
         {
           headers: {
@@ -41,8 +41,8 @@ export default function EditVisitor() {
         }
       )
 
-      alert("Visitor updated successfully")
-      window.location.href = "/visitors"
+      alert("Employee updated successfully")
+      window.location.href = "/employees"
     } catch (err) {
       console.error(err)
         alert("Update failed")
@@ -52,7 +52,7 @@ export default function EditVisitor() {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <form onSubmit={handleUpdate} className="bg-white p-8 rounded-lg shadow w-full max-w-lg" >
-   <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">  Edit Visitor </h2>
+   <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">  Edit Employee </h2>
  <input name="name" value={form.name} onChange={handleChange} className="input" />
         <input name="gender" value={form.gender} onChange={handleChange} className="input mt-3" />
         <input name="age" value={form.age} onChange={handleChange} className="input mt-3" />
@@ -62,7 +62,7 @@ export default function EditVisitor() {
         <input name="address" value={form.address} onChange={handleChange} className="input mt-3" />
 
         <button  type="submit"  className="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold"  >
-          Update Visitor
+          Update Employee
         </button>
       </form>
     </div>

@@ -47,7 +47,6 @@ export default function AddVisitor() {
       await api.post("/register/visitor", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
         },
       })
 
@@ -61,7 +60,7 @@ export default function AddVisitor() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow w-full max-w-lg">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="bg-white p-8 rounded-lg shadow w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Add New Visitor
         </h2>
