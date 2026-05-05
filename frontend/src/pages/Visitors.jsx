@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import api from '../services/api'
+
 
 export default function Visitors() {
     const [visitors, setVisitors] = useState([])
     const [showLogout, setShowLogout] = useState(false);
-
+  const navigate = useNavigate();
 
     useEffect(() => {
        api
@@ -17,7 +19,8 @@ export default function Visitors() {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        window.location.href = "/";
+        navigate("/");
+
     };
 
     const isActive = (path) => window.location.pathname === path;
@@ -48,46 +51,41 @@ export default function Visitors() {
             Visitors Panel
           </div>
           <nav className="mt-6">
-            <a
-              href="/dashboard"
+            <Link to="/dashboard"
               className={`block py-3 px-6 transition-colors ${
                 isActive("/dashboard") ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-500"
               }`}
             >
               Dashboard
-            </a>
-            <a
-              href="/visitors"
+            </Link>
+            <Link to="/visitors"
               className={`block py-3 px-6 transition-colors ${
                 isActive("/visitors") ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-500"
               }`}
             >
               Visitors
-            </a>
-            <a
-              href="/employees"
+            </Link>
+            <Link to="/employees"
               className={`block py-3 px-6 transition-colors ${
                 isActive("/employees") ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-500"
               }`}
             >
               Employees
-            </a>
-            <a
-              href="/preregister"
+            </Link>
+            <Link to="/preregister"
               className={`block py-3 px-6 transition-colors ${
                 isActive("/preregister") ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-500"
               }`}
             >
               Pre-Registrations
-            </a>
-            <a
-              href="/checkinout"
+            </Link>
+            <Link to="/checkinout"
               className={`block py-3 px-6 transition-colors ${
                 isActive("/checkinout") ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-500"
               }`}
             >
               Check In / Out
-            </a>
+            </Link>
           </nav>
         </div>
         <div className="p-6 border-t border-indigo-500">
@@ -106,12 +104,12 @@ export default function Visitors() {
   <div className="flex justify-between items-center mb-6">
   <h1 className="text-3xl font-bold text-gray-800">Visitors</h1>
 
-  <a
-    href="/add-visitor"
+  <Link
+    to="/add-visitor"
     className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold shadow"
   >
     + Register Visitor
-  </a>
+  </Link>
 </div>
 
 
@@ -157,14 +155,14 @@ export default function Visitors() {
                 🗑️
             </button>
             <button
-                onClick={() => window.location.href = `/edit-visitor/${v._id}`}
+                onClick={() => navigate(`/edit-visitor/${v._id}`)}
                 className="text-indigo-600 hover:text-indigo-800"
                 title="Edit Visitor"
             >
                 ✏️
             </button>
             <button
-                onClick={() => window.location.href = `/print-visitorpass/${v._id}`}
+                onClick={() => navigate(`/print-visitorpass/${v._id}`)}
                 className="text-indigo-600 hover:text-indigo-800"
                 title="Print Visitor Pass"
             >

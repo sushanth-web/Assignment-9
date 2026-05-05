@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import api from "../services/api";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 export default function EditEmployee() {
   const { id } = useParams()
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     gender: "",
@@ -42,7 +46,7 @@ export default function EditEmployee() {
       )
 
       alert("Employee updated successfully")
-      window.location.href = "/employees"
+      navigate("/employees");
     } catch (err) {
       console.error(err)
         alert("Update failed")
